@@ -1,0 +1,462 @@
+/* ==========================================================================
+   AuraWell Feed & Post Cards Styles
+   ========================================================================== */
+
+/* Stories / Wellness Moments Carousel */
+.stories-container {
+  display: flex;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.stories-container::-webkit-scrollbar {
+  display: none;
+}
+
+.story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 68px;
+  text-align: center;
+}
+
+.story-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-full);
+  padding: 2.5px;
+  background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+.story-ring.watched {
+  background: var(--border-medium);
+}
+.story-item:hover .story-ring {
+  transform: scale(1.06);
+}
+
+.story-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--bg-surface);
+}
+
+.story-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Feed Navigation Tabs */
+.feed-tabs-row {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 0.25rem;
+}
+.feed-tabs-row::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-tab {
+  padding: 0.6rem 1.15rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.feed-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--border-highlight);
+  background: var(--bg-elevated);
+}
+.feed-tab.active {
+  background: var(--primary-surface);
+  color: var(--primary-light);
+  border-color: var(--border-highlight);
+  font-weight: 700;
+}
+
+/* Quick Post Creator Prompt Box */
+.quick-create-box {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1.15rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-create-input-btn {
+  flex: 1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.15rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.quick-create-input-btn:hover {
+  background: var(--bg-main);
+  border-color: var(--border-highlight);
+  color: var(--text-secondary);
+}
+
+/* Post Card */
+.post-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast);
+}
+.post-card:hover {
+  border-color: var(--border-highlight);
+}
+
+/* Post Header */
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-author-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.post-author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--border-highlight);
+}
+
+.post-author-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-author-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.post-author-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.post-author-handle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.post-timestamp {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.post-category-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  background: var(--primary-surface);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-highlight);
+}
+
+.post-actions-menu-btn {
+  color: var(--text-muted);
+  padding: 0.4rem;
+  border-radius: var(--radius-full);
+  transition: color var(--transition-fast);
+}
+.post-actions-menu-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+/* Post Body Content */
+.post-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.post-hashtag {
+  color: var(--primary-light);
+  font-weight: 600;
+  cursor: pointer;
+}
+.post-hashtag:hover {
+  text-decoration: underline;
+}
+
+/* Recipe Nutrition Breakdown Box */
+.recipe-macros-box {
+  display: flex;
+  gap: 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  flex-wrap: wrap;
+}
+
+.macro-pill {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 65px;
+  align-items: center;
+  background: var(--bg-surface);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+}
+
+.macro-value {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.macro-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Post Media Display */
+.post-media-container {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  max-height: 520px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-media-img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-media-video {
+  width: 100%;
+  max-height: 520px;
+  display: block;
+  background: #000;
+}
+
+/* Post Social Actions Toolbar */
+.post-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.toolbar-left-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+.action-btn:hover {
+  color: var(--text-primary);
+}
+
+.action-btn.liked {
+  color: var(--status-danger);
+}
+.action-btn.bookmarked {
+  color: var(--secondary-light);
+}
+
+.action-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Comments Section */
+.post-comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.comment-item {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.comment-content {
+  flex: 1;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.86rem;
+}
+
+.comment-author-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-right: 0.5rem;
+}
+
+.comment-input-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+.comment-input {
+  flex: 1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1rem;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+.comment-input:focus {
+  border-color: var(--primary-light);
+}
+
+/* ==========================================================================
+   Instagram-Style Mobile Feed Styling & Double-Tap Heart
+   ========================================================================== */
+
+/* Double-Tap Heart Pop Overlay */
+.double-tap-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 90px;
+  height: 90px;
+  color: #ff3040;
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(255, 48, 64, 0.7));
+  z-index: 30;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s ease;
+}
+
+.double-tap-heart.pop {
+  transform: translate(-50%, -50%) scale(1.25);
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .stories-container {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: 0.75rem 0.65rem;
+    background: transparent;
+  }
+
+  .quick-create-box {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .post-card {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: 0.85rem 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-header,
+  .post-text,
+  .post-toolbar,
+  .post-comments-container,
+  .recipe-macros-box {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .post-media-container {
+    border-radius: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .post-media-img {
+    height: 100%;
+  }
+}

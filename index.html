@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="hi" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>AuraWell — Discover Better Health. Build Better Habits.</title>
+  <meta name="description" content="AuraWell is a science-informed health and wellness social platform for nutrition, yoga, daily habits, sleep, and supportive community vitality.">
+  <meta name="theme-color" content="#0c1214">
+
+  <!-- Open Graph & SEO -->
+  <meta property="og:title" content="AuraWell — Health & Wellness Community">
+  <meta property="og:description" content="Discover Better Health. Build Better Habits. Evidence-informed community wellness.">
+  <meta property="og:image" content="assets/images/aurawell-logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- PWA Manifest & App Icon -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/jpeg" href="assets/images/aurawell-logo.jpg">
+  <link rel="apple-touch-icon" href="assets/images/aurawell-logo.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/feed.css">
+  <link rel="stylesheet" href="css/reels.css">
+  <link rel="stylesheet" href="css/tracker.css">
+
+  <style>
+    /* Inline SVG Definitions */
+    .water-grad-def { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- SVG Gradient Definitions for Rings -->
+  <svg class="water-grad-def">
+    <defs>
+      <linearGradient id="waterGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="var(--primary-light)" />
+        <stop offset="100%" stop-color="var(--accent-teal)" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ==========================================================================
+       Top Navigation Bar
+       ========================================================================== -->
+  <header class="top-navbar" id="topNavbar">
+    <div class="brand-wrapper" onclick="App.switchTab('feed')">
+      <img src="assets/images/aurawell-logo.jpg" alt="AuraWell Logo" class="brand-logo-img">
+      <div class="brand-text">
+        <span class="brand-title">AuraWell</span>
+        <span class="brand-tagline" data-i18n="tagline">Discover Better Health. Build Better Habits.</span>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="globalSearchInput" class="search-input" placeholder="व्यंजन, योग, विशेषज्ञ या स्वास्थ्य विषय खोजें..." data-i18n-placeholder="common.searchPlaceholder">
+      </div>
+    </div>
+
+    <!-- Top Right Nav Actions -->
+    <div class="nav-actions">
+      <!-- Role Switcher Chip -->
+      <button class="role-badge-chip" id="roleBadgeChip" title="Switch Demo Role for testing permissions">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span class="label">Member</span>
+      </button>
+
+      <!-- Language Selector Pill -->
+      <button class="lang-selector-btn" id="langSelectorBtn" title="Switch Language">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langBtnText">हिन्दी</span>
+      </button>
+
+      <!-- Theme Toggle Button -->
+      <button class="btn-icon" id="themeToggleBtn" title="Toggle Dark/Light Mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <!-- Notifications Bell -->
+      <div class="notif-btn-wrapper">
+        <button class="btn-icon" onclick="App.showToast('All notifications are up to date!', 'info')" title="Notifications">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+        <span class="notif-badge-count">2</span>
+      </div>
+
+      <!-- Instagram-Style Direct Messages (DM) Icon -->
+      <div class="notif-btn-wrapper">
+        <button class="btn-icon" onclick="App.openDirectMessages()" title="Direct Messages">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <span class="notif-badge-count" style="background: var(--primary);">1</span>
+      </div>
+
+      <!-- User Avatar Profile Button -->
+      <div class="user-avatar-btn" onclick="App.switchTab('profile')" title="My Profile">
+        <img src="assets/images/aurawell-logo.jpg" alt="Current User" class="user-avatar-img">
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main App Layout Grid
+       ========================================================================== -->
+  <div class="app-layout">
+    <div class="layout-grid">
+
+      <!-- ======================================================================
+           Left Navigation Sidebar (Desktop)
+           ====================================================================== -->
+      <aside class="app-left-sidebar" id="appLeftSidebar">
+        <div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item active">
+              <button data-tab="feed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span data-i18n="nav.home">Home Feed</span>
+              </button>
+            </li>
+
+            <li class="sidebar-nav-item">
+              <button data-tab="reels">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                <span data-i18n="nav.explore">Reels & Video</span>
+              </button>
+            </li>
+
+            <li class="sidebar-nav-item">
+              <button data-tab="articles">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span data-i18n="nav.articles">Health Library</span>
+              </button>
+            </li>
+
+            <li class="sidebar-nav-item">
+              <button data-tab="tracker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+                <span data-i18n="nav.tracker">Habit Tracker</span>
+              </button>
+            </li>
+
+            <li class="sidebar-nav-item">
+              <button data-tab="profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span data-i18n="nav.profile">My Profile</span>
+              </button>
+            </li>
+
+            <li class="sidebar-nav-item">
+              <a href="admin.html" style="color: var(--secondary-light);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span data-i18n="nav.admin">Admin Panel</span>
+                <span class="badge badge-amber" style="margin-left: auto; font-size: 0.65rem;">PRO</span>
+              </a>
+            </li>
+          </ul>
+
+          <button class="btn btn-primary sidebar-create-btn" onclick="App.openCreateModal()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span data-i18n="nav.create">Create Post</span>
+          </button>
+        </div>
+
+        <!-- Sidebar User Mini Card -->
+        <div class="sidebar-user-card" onclick="App.switchTab('profile')">
+          <img src="assets/images/aurawell-logo.jpg" alt="User Avatar" class="user-avatar-img" style="width: 40px; height: 40px; border-radius: var(--radius-full); object-fit: cover;">
+          <div class="sidebar-user-meta">
+            <span class="sidebar-user-name current-user-name">Aarav Patel</span>
+            <span class="sidebar-user-handle current-user-handle">@aarav_wellness</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ======================================================================
+           Center Feed & Active Views
+           ====================================================================== -->
+      <main class="app-center-feed">
+
+        <!-- VIEW 1: Home Feed Section -->
+        <section id="feedViewSection" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <!-- Wellness Moments / Stories Carousel -->
+          <div class="stories-container" id="storiesContainer"></div>
+
+          <!-- Feed Category Navigation Tabs -->
+          <div class="feed-tabs-row">
+            <button class="feed-tab active" data-category="all">
+              <span data-i18n="feed.forYou">For You</span>
+            </button>
+            <button class="feed-tab" data-category="medical">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span data-i18n="feed.medical">Doctor Verified</span>
+            </button>
+            <button class="feed-tab" data-category="recipes">
+              <span data-i18n="feed.recipes">Healthy Recipes</span>
+            </button>
+            <button class="feed-tab" data-category="fitness">
+              <span data-i18n="feed.fitness">Yoga & Movement</span>
+            </button>
+            <button class="feed-tab" data-category="sleep">
+              <span data-i18n="feed.sleep">Sleep & Mind</span>
+            </button>
+          </div>
+
+          <!-- Quick Post Creator Prompt Box -->
+          <div class="quick-create-box">
+            <img src="assets/images/aurawell-logo.jpg" alt="Avatar" class="user-avatar-img" style="width: 38px; height: 38px; border-radius: var(--radius-full); object-fit: cover;">
+            <button class="quick-create-input-btn" onclick="App.openCreateModal()" data-i18n="feed.sharePrompt">
+              Share your healthy journey, recipe or wellness tip...
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="App.openCreateModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Post
+            </button>
+          </div>
+
+          <!-- Feed Posts Render Container -->
+          <div id="feedPostsContainer" style="display: flex; flex-direction: column; gap: 1.25rem;"></div>
+        </section>
+
+        <!-- VIEW 2: Reels Short-Form Video Section -->
+        <section id="reelsViewSection" style="display: none; flex-direction: column; gap: 1.5rem;">
+          <div class="reels-feed-container" id="reelsContainer"></div>
+        </section>
+
+        <!-- VIEW 3: Health Articles Library Section -->
+        <section id="articlesViewSection" style="display: none; flex-direction: column; gap: 1.5rem;">
+          <div class="disclaimer-banner">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <div>
+              <strong>Peer-Reviewed Medical Knowledge:</strong> Every guide in our Health Library is verified by qualified clinicians with accredited medical credentials.
+            </div>
+          </div>
+          <div id="articlesListContainer" style="display: flex; flex-direction: column; gap: 1.25rem;"></div>
+        </section>
+
+        <!-- VIEW 4: Personal Habit Tracker Section -->
+        <section id="trackerViewSection" style="display: none; flex-direction: column; gap: 1.5rem;">
+          <div class="tracker-container">
+            <!-- Streak Banner -->
+            <div class="streak-banner">
+              <div class="streak-left">
+                <div class="streak-flame-icon">🔥</div>
+                <div class="streak-info">
+                  <h3>7 <span data-i18n="tracker.streak">Day Wellness Streak</span></h3>
+                  <p data-i18n="tracker.streakSub">Consistency builds lifelong vitality!</p>
+                </div>
+              </div>
+              <span class="badge badge-amber">DPDP Private</span>
+            </div>
+
+            <!-- Hydration and Sleep Row -->
+            <div class="tracker-grid-2col">
+              <!-- Hydration Ring Widget -->
+              <div class="hydration-card">
+                <h4 data-i18n="tracker.hydrationTitle">Daily Hydration Target</h4>
+                <div class="hydration-ring-container">
+                  <svg class="hydration-ring-svg" viewBox="0 0 160 160">
+                    <circle class="ring-bg" cx="80" cy="80" r="65" />
+                    <circle class="ring-fill" id="waterRingFill" cx="80" cy="80" r="65" />
+                  </svg>
+                  <div class="hydration-center-text">
+                    <span class="hydration-amount" id="waterAmountText">2,250 ml</span>
+                    <span class="hydration-target" data-i18n="tracker.targetOf">of 3,000 ml</span>
+                  </div>
+                </div>
+                <div class="hydration-actions">
+                  <button class="hydration-btn" onclick="TrackerService.addWater(250)" data-i18n="tracker.addWater250">+250 ml</button>
+                  <button class="hydration-btn" onclick="TrackerService.addWater(500)" data-i18n="tracker.addWater500">+500 ml</button>
+                  <button class="hydration-btn" onclick="TrackerService.resetWater()" data-i18n="tracker.resetWater" style="color: var(--text-muted);">Reset</button>
+                </div>
+              </div>
+
+              <!-- Sleep Quality Widget -->
+              <div class="sleep-card">
+                <h4 data-i18n="tracker.sleepTitle">Sleep Duration & Quality</h4>
+                <div class="sleep-display">
+                  <span class="sleep-hours-big" id="sleepDisplayVal">7.5</span>
+                  <span class="sleep-unit" data-i18n="tracker.hours">hours</span>
+                </div>
+                <input type="range" class="sleep-range-input" id="sleepRangeInput" min="4" max="11" step="0.5" value="7.5" oninput="TrackerService.updateSleep(this.value)">
+                
+                <div class="sleep-quality-row">
+                  <span style="font-size: 0.85rem; font-weight: 600;" data-i18n="tracker.sleepQuality">Sleep Quality</span>
+                  <div class="quality-stars">
+                    <span class="star-btn active">★</span>
+                    <span class="star-btn active">★</span>
+                    <span class="star-btn active">★</span>
+                    <span class="star-btn active">★</span>
+                    <span class="star-btn">★</span>
+                  </div>
+                </div>
+
+                <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; background: var(--bg-elevated); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm);">
+                  💡 Aim for consistent wake times to anchor your circadian rhythm.
+                </div>
+              </div>
+            </div>
+
+            <!-- Mindful Box Breathing Tool -->
+            <div class="breathing-card" id="breathingCard">
+              <h3 data-i18n="tracker.breathingTitle">Mindful Box Breathing (Pranayama)</h3>
+              <p class="breathing-tip" data-i18n="tracker.breathingSub">4s Inhale • 4s Hold • 4s Exhale • 4s Hold to reset your nervous system</p>
+
+              <div class="breathing-orb-container">
+                <div class="breathing-orb" id="breathingOrb">
+                  <span id="breathingOrbCount">4s</span>
+                </div>
+              </div>
+
+              <div class="breathing-phase-label" id="breathingPhaseLabel">Ready to begin</div>
+
+              <button class="btn btn-primary" id="toggleBreathingBtn" data-i18n="tracker.startBreathing">
+                Start Guided Session
+              </button>
+            </div>
+
+            <!-- Daily Habits Checklist -->
+            <div class="habits-list-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h4 data-i18n="tracker.habitsTitle">Today's Daily Habits</h4>
+                <span class="badge badge-primary">3 / 5 Done</span>
+              </div>
+              <div id="dailyHabitsList" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
+            </div>
+
+            <!-- Privacy Guarantee Notice -->
+            <div class="disclaimer-banner">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div data-i18n="tracker.privateNotice">
+                Your health and habit logs are strictly private and never posted to public feeds. Complies with DPDP Act 2023.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 5: User Profile Section -->
+        <section id="profileViewSection" style="display: none; flex-direction: column; gap: 1.5rem;"></section>
+
+      </main>
+
+      <!-- ======================================================================
+           Right Sidebar (Trends, Habits, Verified Doctors)
+           ====================================================================== -->
+      <aside class="app-right-sidebar">
+        <!-- Daily Medical Disclaimer Banner -->
+        <div class="disclaimer-banner">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div data-i18n="feed.disclaimer">
+            Community wellness content. Not medical advice. Always consult your personal physician.
+          </div>
+        </div>
+
+        <!-- Verified Health Creators -->
+        <div class="widget-card">
+          <div class="widget-title-row">
+            <span class="widget-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--status-verified)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Verified Clinicians
+            </span>
+            <span class="badge badge-verified">Doctors</span>
+          </div>
+          <div id="rightRailCreators" style="display: flex; flex-direction: column; gap: 0.85rem;"></div>
+        </div>
+
+        <!-- Trending Topics -->
+        <div class="widget-card">
+          <div class="widget-title-row">
+            <span class="widget-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Trending Wellness
+            </span>
+          </div>
+
+          <div class="trend-item" onclick="FeedService.searchTag('#CircadianSleep')">
+            <span class="trend-category">Sleep Hygiene</span>
+            <span class="trend-name">#CircadianSleep</span>
+            <span class="trend-count">1.4k members logging</span>
+          </div>
+
+          <div class="trend-item" onclick="FeedService.searchTag('#PlantProtein')">
+            <span class="trend-category">Indian Nutrition</span>
+            <span class="trend-name">#PlantProtein</span>
+            <span class="trend-count">2.8k recipes shared</span>
+          </div>
+
+          <div class="trend-item" onclick="FeedService.searchTag('#MorningSunlight')">
+            <span class="trend-category">Daily Habits</span>
+            <span class="trend-name">#MorningSunlight</span>
+            <span class="trend-count">940 daily streaks</span>
+          </div>
+
+          <div class="trend-item" onclick="FeedService.searchTag('#DeskMobility')">
+            <span class="trend-category">Yoga & Movement</span>
+            <span class="trend-name">#DeskMobility</span>
+            <span class="trend-count">3.1k video views</span>
+          </div>
+        </div>
+
+        <!-- Android App Install Callout -->
+        <div class="widget-card" style="background: linear-gradient(135deg, hsla(158, 64%, 42%, 0.15), var(--bg-surface)); border-color: var(--border-highlight);">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="assets/images/aurawell-logo.jpg" style="width: 36px; height: 36px; border-radius: var(--radius-sm);">
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Install Android App</div>
+              <div style="font-size: 0.76rem; color: var(--text-muted);">PWA & Native APK Ready</div>
+            </div>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Add AuraWell to your Android home screen for instant offline habit tracking.</p>
+          <button class="btn btn-secondary btn-sm" onclick="App.showToast('PWA install prompt ready! Click browser install or build Android APK in /android folder.', 'success')">Get App</button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Bottom Navigation Bar (Mobile / Tablet)
+       ========================================================================== -->
+  <nav class="app-bottom-nav">
+    <button class="bottom-nav-item active" data-tab="feed">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span data-i18n="nav.home">Home</span>
+    </button>
+
+    <button class="bottom-nav-item" data-tab="reels">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+      <span data-i18n="nav.explore">Reels</span>
+    </button>
+
+    <button class="bottom-nav-create-btn" onclick="App.openCreateModal()" title="Create Post">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+
+    <button class="bottom-nav-item" data-tab="tracker">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+      <span data-i18n="nav.tracker">Habits</span>
+    </button>
+
+    <button class="bottom-nav-item" data-tab="profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span data-i18n="nav.profile">Profile</span>
+    </button>
+  </nav>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+
+  <!-- Modal 1: Create Wellness Post -->
+  <div class="modal-backdrop" id="createPostModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span data-i18n="create.title">Create Wellness Post</span>
+        </div>
+        <button class="btn-icon" onclick="App.closeCreateModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" data-i18n="create.categoryLabel">Wellness Category</label>
+          <select class="form-select" id="createPostCategory">
+            <option value="Nutrition">🥗 Nutrition & Healthy Food</option>
+            <option value="Yoga">🧘 Yoga & Mindfulness</option>
+            <option value="Movement">🏃 Fitness & Movement</option>
+            <option value="Sleep">🌙 Sleep & Recovery</option>
+            <option value="Ayurveda & Science">🌿 Botanical Science & Ayurveda</option>
+            <option value="General Wellness">✨ General Daily Habits</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <textarea class="form-textarea" id="createPostText" placeholder="What healthy habit or meal are you celebrating today?" data-i18n-placeholder="create.captionPlaceholder"></textarea>
+        </div>
+
+        <!-- Drag & Drop Upload Zone -->
+        <div class="upload-dropzone" id="createUploadDropzone">
+          <input type="file" id="createFileInput" accept="image/*,video/*" style="display: none;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--primary-light);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <div style="font-weight: 600; font-size: 0.9rem;" data-i18n="create.uploadPrompt">Click or drop high-resolution image/video here</div>
+          <div style="font-size: 0.76rem; color: var(--text-muted);">Max 15MB for Images • Max 60MB for Videos (MP4/WebM)</div>
+          <div class="upload-preview-container" id="uploadPreviewArea"></div>
+        </div>
+
+        <!-- Accessibility Alt Text Input -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="create.altTextLabel">Image Description (Accessibility Alt-Text)</label>
+          <input type="text" class="form-input" id="createPostAltText" placeholder="Describe the image content for screen readers">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="App.closeCreateModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="App.submitNewPost()" data-i18n="create.submitBtn">Publish Post</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Demo Role Switcher -->
+  <div class="modal-backdrop" id="roleSwitcherModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Switch Account Role (Demo & Testing)
+        </div>
+        <button class="btn-icon" onclick="App.closeModal('roleSwitcherModal')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+          Select any persona to test the platform with different role permissions:
+        </p>
+        <div id="roleSwitcherList" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Report Content Modal -->
+  <div class="modal-backdrop" id="reportPostModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--status-danger);"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Report Potential Health Misinformation
+        </div>
+        <button class="btn-icon" onclick="App.closeModal('reportPostModal')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="reportTargetPostId">
+        <p style="font-size: 0.88rem; color: var(--text-secondary);">
+          AuraWell takes health accuracy seriously. If this post contains unverified medical claims or dangerous advice, our clinical moderation team will review it.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Reason for Report</label>
+          <select class="form-select" id="reportReasonSelect">
+            <option value="Dangerous Medical Misinformation">Dangerous Medical Misinformation</option>
+            <option value="Fraudulent Cure or Miracle Claim">Fraudulent Disease Cure or Miracle Claim</option>
+            <option value="Unregulated Product Promotion">Unregulated Health Product Promotion</option>
+            <option value="Harassment or Bullying">Harassment or Toxic Behavior</option>
+            <option value="Spam">Spam or Irrelevant Content</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="App.closeModal('reportPostModal')">Cancel</button>
+        <button class="btn btn-primary" style="background: var(--status-danger);" onclick="App.submitPostReport()">Submit Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Article Detail Reader -->
+  <div class="modal-backdrop" id="articleDetailModal">
+    <div class="modal-box" style="max-width: 720px;">
+      <div class="modal-header">
+        <div class="modal-title" id="articleModalTitle">Article Reader</div>
+        <button class="btn-icon" onclick="ArticleService.closeArticleModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="articleModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ArticleService.closeArticleModal()">Close Reader</button>
+      </div>
+  <!-- Modal 5: Instagram-Style Direct Messages (DM) -->
+  <div class="modal-backdrop" id="directMessagesModal">
+    <div class="modal-box" style="max-width: 520px; height: 80vh;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Direct Messages & Wellness Buddies
+        </div>
+        <button class="btn-icon" onclick="App.closeModal('directMessagesModal')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body" style="flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.85rem;" id="dmChatMessages">
+        <!-- Message 1 -->
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+          <img src="assets/images/doctor-priya.jpg" style="width: 34px; height: 34px; border-radius: var(--radius-full); object-fit: cover;">
+          <div style="background: var(--bg-elevated); padding: 0.75rem 1rem; border-radius: 14px; max-width: 78%; font-size: 0.88rem; line-height: 1.45;">
+            <strong style="color: var(--primary-light);">Dr. Priya Sharma, MD</strong><br>
+            Hello Aarav! Saw your 7-day hydration streak on the tracker. Great job! How is your morning energy feeling?
+          </div>
+        </div>
+
+        <!-- Message 2 (User) -->
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start; justify-content: flex-end;">
+          <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 0.75rem 1rem; border-radius: 14px; max-width: 78%; font-size: 0.88rem; line-height: 1.45;">
+            Thank you Doctor! The afternoon sluggishness is almost completely gone since hitting 2.5L daily and doing the 10-min morning sunlight routine.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="padding: 0.75rem 1rem;">
+        <input type="text" id="dmMessageInput" class="form-input" style="flex: 1; border-radius: var(--radius-full);" placeholder="Write a supportive wellness message..." onkeydown="if(event.key==='Enter') App.sendDirectMessage()">
+        <button class="btn btn-primary btn-sm" onclick="App.sendDirectMessage()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/feed.js"></script>
+  <script src="js/reels.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

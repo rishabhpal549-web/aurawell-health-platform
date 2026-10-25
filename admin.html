@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>AuraWell Admin Console — Platform Governance & Safety</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/jpeg" href="assets/images/aurawell-logo.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- ======================================================================
+         Admin Sidebar (Desktop & Mobile Drawer)
+         ====================================================================== -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div>
+        <div class="admin-brand-header">
+          <div class="admin-brand-title">
+            <img src="assets/images/aurawell-logo.jpg" style="width: 32px; height: 32px; border-radius: var(--radius-xs);">
+            <span>AuraWell Admin</span>
+          </div>
+          <span class="badge badge-amber" style="font-size: 0.65rem;">SECURE</span>
+        </div>
+
+        <ul class="admin-nav-list">
+          <li class="admin-nav-item active">
+            <button data-tab="overview">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>Dashboard Overview</span>
+            </button>
+          </li>
+
+          <li class="admin-nav-item">
+            <button data-tab="users">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>User Management</span>
+            </button>
+          </li>
+
+          <li class="admin-nav-item">
+            <button data-tab="moderation">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Content Moderation</span>
+              <span class="admin-nav-badge" id="adminPendingBadge">2</span>
+            </button>
+          </li>
+
+          <li class="admin-nav-item">
+            <button data-tab="healthReview">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span>Health Content Review</span>
+            </button>
+          </li>
+
+          <li class="admin-nav-item">
+            <button data-tab="settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Platform Settings</span>
+            </button>
+          </li>
+
+          <li class="admin-nav-item">
+            <button data-tab="auditLogs">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Security & Audit Logs</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="admin-sidebar-footer">
+        <a href="index.html" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to AuraWell
+        </a>
+        <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center;">
+          AuraWell Governance v1.0.0<br>Role: Super Administrator
+        </div>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         Admin Main Body
+         ====================================================================== -->
+    <main class="admin-main">
+      <!-- Admin Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-topbar-left">
+          <button class="admin-mobile-toggle" id="adminMobileToggle" title="Open Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="admin-breadcrumbs" id="adminBreadcrumb">Overview Dashboard</div>
+        </div>
+
+        <div class="admin-topbar-right">
+          <span class="badge badge-primary">Database: Connected</span>
+          <div style="display: flex; align-items: center; gap: 0.65rem;">
+            <img src="assets/images/aurawell-logo.jpg" style="width: 34px; height: 34px; border-radius: var(--radius-full); object-fit: cover; border: 1.5px solid var(--border-highlight);">
+            <div style="font-size: 0.85rem; font-weight: 700;">Admin Console</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Admin Content Body -->
+      <div class="admin-body">
+        <!-- KPI Metrics Grid -->
+        <section class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-box kpi-icon-emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-value" id="kpiTotalUsers">1,845</span>
+              <span class="kpi-label">Total Users</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box kpi-icon-amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-value" id="kpiActiveUsers">1,248</span>
+              <span class="kpi-label">Active Users</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box kpi-icon-danger">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-value" id="kpiPendingReports">2</span>
+              <span class="kpi-label">Reports Awaiting Review</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box kpi-icon-indigo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-value" id="kpiStorageUsed">4.2 GB</span>
+              <span class="kpi-label">Media Storage Used</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dynamic Admin Tab Content Container -->
+        <div id="adminTabContent"></div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;"></div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AuraState.init();
+      // Ensure admin context
+      AuraState.currentUser = AuraState.demoUsers.find(u => u.role === AuraRoles.ADMIN) || AuraState.demoUsers[2];
+      AdminService.init();
+    });
+
+    // Helper Toast for Admin
+    window.App = {
+      showToast(msg, type = 'info') {
+        const c = document.getElementById('toastContainer');
+        if (!c) return;
+        const t = document.createElement('div');
+        t.style.cssText = 'background: var(--bg-surface); border: 1px solid var(--border-highlight); padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); color: #fff; font-weight: 600; box-shadow: var(--shadow-lg); margin-top: 0.5rem;';
+        t.textContent = msg;
+        c.appendChild(t);
+        setTimeout(() => t.remove(), 3500);
+      }
+    };
+  </script>
+</body>
+</html>

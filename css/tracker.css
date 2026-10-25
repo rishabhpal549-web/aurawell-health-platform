@@ -1,0 +1,328 @@
+/* ==========================================================================
+   AuraWell Personal Wellness Tracker Styles
+   ========================================================================== */
+
+.tracker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Streak & Overview Card */
+.streak-banner {
+  background: linear-gradient(135deg, hsla(38, 92%, 50%, 0.15), hsla(158, 64%, 42%, 0.15));
+  border: 1px solid hsla(38, 92%, 50%, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.streak-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.streak-flame-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.75rem;
+  box-shadow: 0 4px 16px var(--secondary-glow);
+}
+
+.streak-info h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.streak-info p {
+  font-size: 0.85rem;
+  color: var(--secondary-light);
+  font-weight: 600;
+}
+
+/* Hydration Circular Progress Widget */
+.tracker-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 680px) {
+  .tracker-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hydration-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.hydration-ring-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hydration-ring-svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.ring-bg {
+  fill: none;
+  stroke: var(--bg-elevated);
+  stroke-width: 12;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: url(#waterGradient);
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hydration-center-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hydration-amount {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.hydration-target {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.hydration-actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.hydration-btn {
+  flex: 1;
+  padding: 0.55rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+.hydration-btn:hover {
+  background: var(--primary-surface);
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+}
+
+/* Sleep Log Widget */
+.sleep-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.sleep-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.sleep-hours-big {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-indigo);
+}
+
+.sleep-unit {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.sleep-range-input {
+  width: 100%;
+  accent-color: var(--accent-indigo);
+  cursor: pointer;
+}
+
+.sleep-quality-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quality-stars {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.star-btn {
+  color: var(--border-medium);
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: color var(--transition-fast);
+}
+.star-btn.active {
+  color: var(--secondary);
+}
+
+/* Mindful Box Breathing Tool */
+.breathing-card {
+  background: radial-gradient(circle at center, hsla(158, 64%, 42%, 0.12), var(--bg-surface));
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.breathing-orb-container {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.breathing-orb {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, var(--primary-light), var(--primary-dark));
+  box-shadow: 0 0 35px var(--primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  transition: all 4s ease-in-out;
+}
+
+.breathing-card.active .breathing-orb {
+  animation: breathingExpand 16s ease-in-out infinite;
+}
+
+.breathing-phase-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-height: 1.6rem;
+}
+
+.breathing-tip {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 360px;
+}
+
+/* Daily Habits Checklist */
+.habits-list-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.habit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.habit-row:hover {
+  border-color: var(--border-highlight);
+  background: var(--bg-main);
+}
+
+.habit-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.habit-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-xs);
+  border: 2px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all var(--transition-fast);
+}
+
+.habit-row.completed .habit-checkbox {
+  background: var(--primary);
+  border-color: var(--primary-light);
+  color: #fff;
+}
+
+.habit-row.completed .habit-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.habit-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.habit-category-badge {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
